@@ -11,6 +11,10 @@ qt_add_executable(SatSim
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    timedriver.h timedriver.cpp
+    spaceentity.h spaceentity.cpp
+
+
 )
 
 target_link_libraries(SatSim
