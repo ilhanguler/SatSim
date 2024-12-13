@@ -10,21 +10,186 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>25</height>
-    </rect>
+  <property name="font">
+   <font>
+    <family>Helvetica</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Simulation</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::GoHome"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+background-color: #FEFBF6;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
    </property>
+   <widget class="QPushButton" name="startButton">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>10</y>
+      <width>90</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #74A9AE; 
+    color: #FEFBF6;
+    border-radius:7px;
+    padding: 5px 10px; 
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #5B9297; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>START</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopButton">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>40</y>
+      <width>90</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #DEA34C; 
+    color: #FEFBF6;
+    border-radius:7px;
+    padding: 5px 10px; 
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #C48C38; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>STOP</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reportButton">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>70</y>
+      <width>90</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #B67352; 
+    color: #FEFBF6;
+    border-radius:7px;
+    padding: 5px 10px; 
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #935637; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>REPORT</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>105</y>
+      <width>100</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">Line{
+background-color:#EBE7D5;
+}</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="satelliteButton">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>116</y>
+      <width>90</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #74A9AE; 
+    color: #FEFBF6;
+    border-radius:7px;
+    padding: 5px 10px; 
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #5B9297; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>SATELLITE</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="reportplainTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>465</y>
+      <width>770</width>
+      <height>125</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+background-color:#D39475;
+color:#FEFBF6;
+}</string>
+    </property>
+    <property name="plainText">
+     <string>Report</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

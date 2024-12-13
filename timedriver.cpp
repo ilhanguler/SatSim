@@ -1,11 +1,8 @@
 #include "timedriver.h"
 
-
 TimeDriver::TimeDriver(QObject *parent)
     : QObject{parent}
-{
-
-}
+{}
 
 TimeDriver::TimeDriver(QDateTime simTime, qint64 deltaMSecs)
 {

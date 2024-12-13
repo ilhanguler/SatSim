@@ -7,13 +7,10 @@ public:
     SpaceEntity();
 };
 
-class StrayEntity : public SpaceEntity{
+class StrayEntity : public SpaceEntity
+{};
 
-};
-
-class VehicleEntity : public SpaceEntity{
-
-};
-
+class VehicleEntity : public SpaceEntity
+{};
 
 #endif // SPACEENTITY_H

@@ -2,8 +2,8 @@
 #define TIMEDRIVER_H
 
 #include <QDateTime>
-#include <QObject>
 #include <QElapsedTimer>
+#include <QObject>
 
 class TimeDriver : public QObject
 {
@@ -21,16 +21,11 @@ public:
     void passDeltaTime();
 
 public slots:
-    void waitSimulation(){
-        passDeltaTime();
-    }
+    void waitSimulation() { passDeltaTime(); }
 
-    void updateSystemTime(){
-        systemTime = QDateTime::currentDateTime();
-    }
+    void updateSystemTime() { systemTime = QDateTime::currentDateTime(); }
 signals:
     void timePassed();
-
 };
 
 #endif // TIMEDRIVER_H
