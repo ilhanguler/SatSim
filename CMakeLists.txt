@@ -13,9 +13,25 @@ qt_add_executable(SatSim
     mainwindow.ui
     timedriver.h timedriver.cpp
     spaceentity.h spaceentity.cpp
-
+    vcpkg.json
+    perturbations.h perturbations.cpp
+    perturbations.cpp
+    perturbations.h
+    electromagnetics.h electromagnetics.cpp
+    base_definitions.h
+    base_definitions.cpp
 
 )
+
+# Enable the vcpkg toolchain
+
+
+
+message("Your CMAKE Version: ${CMAKE_VERSION}")
+message("C++ Version Setting (Not Guaranteed): ${CMAKE_CXX_STANDARD}")
+
+find_package(boost_multiprecision REQUIRED CONFIG)
+    target_link_libraries(SatSim PRIVATE Boost::multiprecision)
 
 target_link_libraries(SatSim
     PRIVATE
