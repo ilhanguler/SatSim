@@ -26,9 +26,9 @@ public:
     std::vector<QVector3D> gui_trajectory();
 
     // position is for precise calculations. gui_pos is for gui.
+    PreciseVector3D position;
     QVector3D gui_pos();
 
-    PreciseVector3D position;
     PreciseVector3D velocity;
     PreciseVector3D acceleration;
     PreciseVector3D jerk;
@@ -73,10 +73,10 @@ public:
     cpp_dec_float_100 twr;
     // delta_v: remaining max velocity gain
     cpp_dec_float_100 delta_v;
-    cpp_dec_float_100 radio_range;
 
     // isotropic = 0, directional = 1 (dish)
     int antenna;
+    cpp_dec_float_100 radio_range;
 };
 
 class CelestialBody : public SpaceEntity
