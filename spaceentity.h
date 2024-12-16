@@ -51,8 +51,8 @@ class VehicleEntity : public SpaceEntity
 {
 public:
 
-    // Direction where the vehicle is facing "forward"
-    // Spherical Coordinate System {r, angle(x), angle(z)} or proportional unit vector
+    // Direction where the vehicle is facing towards;
+    // Spherical Coordinate System {r, angle(x), angle(z)} or proportional unit vector;
     // This is not viable for the current situation because of complexity and deadline. I will implement it later.
     PreciseVector3D bearing;
 

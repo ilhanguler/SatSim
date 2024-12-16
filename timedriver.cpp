@@ -19,3 +19,11 @@ void TimeDriver::passDeltaTime()
     simTime = simTime.addMSecs(deltaMSecs);
     emit timePassed();
 }
+
+void TimeDriver::waitSimulation(){
+    passDeltaTime();
+}
+
+void TimeDriver::updateSystemTime(){
+    systemTime = QDateTime::currentDateTime();
+}

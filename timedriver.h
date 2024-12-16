@@ -9,7 +9,7 @@ class TimeDriver : public QObject
 {
     Q_OBJECT
 public:
-    explicit TimeDriver(QObject *parent = nullptr);
+    TimeDriver(QObject *parent = nullptr);
 
     TimeDriver(QDateTime simTime, qint64 deltaMSecs);
 
@@ -21,13 +21,9 @@ public:
     void passDeltaTime();
 
 public slots:
-    void waitSimulation(){
-        passDeltaTime();
-    }
+    void waitSimulation();
+    void updateSystemTime();
 
-    void updateSystemTime(){
-        systemTime = QDateTime::currentDateTime();
-    }
 signals:
     void timePassed();
 
