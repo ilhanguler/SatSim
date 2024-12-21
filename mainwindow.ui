@@ -29,164 +29,564 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
-background-color: #FEFBF6;
+background-color: #112D4E;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="enabled">
     <bool>true</bool>
    </property>
-   <widget class="QPushButton" name="startButton">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>10</y>
-      <width>90</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-    background-color: #74A9AE; 
-    color: #FEFBF6;
-    border-radius:7px;
-    padding: 5px 10px; 
-    font-size: 10px; 
-    font-weight: lighter; 
-}
-
-QPushButton:hover {
-    background-color: #5B9297; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string>START</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="stopButton">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>40</y>
-      <width>90</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-    background-color: #DEA34C; 
-    color: #FEFBF6;
-    border-radius:7px;
-    padding: 5px 10px; 
-    font-size: 10px; 
-    font-weight: lighter; 
-}
-
-QPushButton:hover {
-    background-color: #C48C38; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string>STOP</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="reportButton">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>70</y>
-      <width>90</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-    background-color: #B67352; 
-    color: #FEFBF6;
-    border-radius:7px;
-    padding: 5px 10px; 
-    font-size: 10px; 
-    font-weight: lighter; 
-}
-
-QPushButton:hover {
-    background-color: #935637; 
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string>REPORT</string>
-    </property>
-   </widget>
-   <widget class="Line" name="line">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>105</y>
-      <width>100</width>
-      <height>1</height>
+      <y>10</y>
+      <width>200</width>
+      <height>630</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica Neue</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTabWidget{
+background-color:#D6CDA4;
+}</string>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::TabPosition::North</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::TabShape::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="usesScrollButtons">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="resourcesTab">
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <attribute name="title">
+      <string>Resources</string>
+     </attribute>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QTreeWidget" name="resourcesTreeWidget">
+        <property name="styleSheet">
+         <string notr="true">QTreeWidget {
+background-color: #1C6758;
+border-radius: 7px;
+}</string>
+        </property>
+        <attribute name="headerVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="missionTab">
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <attribute name="title">
+      <string>Mission</string>
+     </attribute>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QTreeWidget" name="missionTreeWidget">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTreeWidget {
+background-color: #115144;
+border-radius: 7px;
+}</string>
+        </property>
+        <attribute name="headerVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QTextEdit" name="simulateTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>455</x>
+      <y>10</y>
+      <width>80</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">Line{
-background-color:#EBE7D5;
-}</string>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
+     <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}
+
+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="satelliteButton">
+   <widget class="QPushButton" name="simulateButton">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>116</y>
-      <width>90</width>
+      <x>345</x>
+      <y>10</y>
+      <width>100</width>
       <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color: #74A9AE; 
+    background-color: #3F72AF; 
+    qproperty-icon: url(:/icons/play-circle.png);
+    qproperty-iconSize: 14px 14px;
+    text-align: center;
     color: #FEFBF6;
     border-radius:7px;
-    padding: 5px 10px; 
     font-size: 10px; 
     font-weight: lighter; 
 }
 
 QPushButton:hover {
-    background-color: #5B9297; 
+    background-color: #2A5890; 
 }
 
 </string>
     </property>
     <property name="text">
-     <string>SATELLITE</string>
+     <string>SIMULATE</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="reportplainTextEdit">
+   <widget class="QPushButton" name="forwardButton">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>465</y>
-      <width>770</width>
-      <height>125</height>
+      <x>560</x>
+      <y>10</y>
+      <width>100</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-background-color:#D39475;
-color:#FEFBF6;
-}</string>
+     <string notr="true">QPushButton {
+    background-color: #3F72AF; 
+    color: #FEFBF6;
+    qproperty-icon: url(:/icons/forward.png);
+    qproperty-iconSize: 14px 14px;
+    text-align: center;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #2A5890; 
+}
+
+</string>
     </property>
-    <property name="plainText">
+    <property name="text">
+     <string>FORWARD</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="forwardTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>10</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}
+
+</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="reportGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>480</y>
+      <width>670</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica Neue</family>
+      <pointsize>14</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
      <string>Report</string>
+    </property>
+    <widget class="QLabel" name="positionLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>35</y>
+       <width>85</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Position :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="velocityLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>65</y>
+       <width>85</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Velocity :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="accelerationLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>95</y>
+       <width>85</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Acceleration :</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="positionTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>35</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="velocityTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>65</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="accelerationTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>95</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="jerkLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>125</y>
+       <width>85</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Jerk :</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="jerkTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>125</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="snapLabel">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>35</y>
+       <width>70</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Snap :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="crackLabel">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>65</y>
+       <width>70</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Crack :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="forceLabel">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>95</y>
+       <width>70</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Force :</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="snapTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>35</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="crackTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>65</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="forceTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>95</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load Scene</string>
     </property>
    </widget>
   </widget>
