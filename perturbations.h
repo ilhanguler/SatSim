@@ -18,15 +18,25 @@ namespace sgp
 // q is proportional distribution unit of acceleration between dimensions
 // g = m*G/r^2;
 // g^2 = (aq)^2 + (bq)^2 + (cq)^2  --->  q = g / sqrt(a^2 + b^2 + c^2);
-// Therefore we can say q = mG and calculate acceleration vector easily.
-// This is a form of extreme(?) optimization.
+// Therefore we can say q = mG/r and calculate acceleration vector easily.
+// Calculates and returns acceleration for one body.
 PreciseVector3D calcOneBody_Accel(const CelestialBody& cb, const SpaceEntity& se);
 
 // Look at calcOneBody_Accel function
+// Calculates and returns force (Newton) for one body.
 PreciseVector3D calcOneBody_Force(const CelestialBody& cb, const SpaceEntity& se);
 
-// Braindead solution with extreme(!) optimizations
-void sgpTaylor(const std::vector<CelestialBody>& cbs, SpaceEntity& se, cpp_dec_float_100 dT);
+// Calculates acceleration for two bodies and sets their acceleration vectors.
+void calcTwoBody(CelestialBody &cb_1, CelestialBody &cb_2);
+
+// Braindead solution with some optimizations.
+// Calculates trajectory for one small body that is insignificant for the system.
+void sgpTaylorOneBody(const std::vector<CelestialBody>& cbs, SpaceEntity &se,
+               cpp_dec_float_100 deltaMSecs, cpp_dec_float_100 simLengthByHours);
+
+// Calculates trajectory for the given set of celestial bodies.
+// In short, solves N body problem.
+void sgpTaylorNBody(std::vector<CelestialBody>& cbs, cpp_dec_float_100 deltaMSecs, cpp_dec_float_100 simLengthByHours);
 
 }
 

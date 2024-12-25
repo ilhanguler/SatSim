@@ -14,12 +14,16 @@ qt_add_executable(SatSim
     timedriver.h timedriver.cpp
     spaceentity.h spaceentity.cpp
     vcpkg.json
-    perturbations.h perturbations.cpp
     perturbations.cpp
     perturbations.h
     electromagnetics.h electromagnetics.cpp
     base_definitions.h
     base_definitions.cpp
+    sceneloader.h sceneloader.cpp
+    unittranslation.h unittranslation.cpp
+    simdriver.h simdriver.cpp
+    simevent.h simevent.cpp
+
 
 
 )

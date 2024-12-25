@@ -11,11 +11,11 @@ class TimeDriver : public QObject
 public:
     TimeDriver(QObject *parent = nullptr);
 
-    TimeDriver(QDateTime simTime, qint64 deltaMSecs);
+    TimeDriver(QDateTime simTime, unsigned long long deltaMSecs);
 
     QDateTime systemTime = QDateTime::currentDateTime();
     QDateTime simTime = QDateTime::currentDateTime();
-    qint64 deltaMSecs = 1000;
+    unsigned long long deltaMSecs = 1000;
     QElapsedTimer timer;
 
     void passDeltaTime();
