@@ -17,64 +17,93 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    // RESOURCES TAB
-    // Adding spacecraft on tree widget (resources tab)
-    QTreeWidgetItem *spacecraftRoot = new QTreeWidgetItem(ui->resourcesTreeWidget);
-    spacecraftRoot->setText(0, "Spacecraft");
-    QTreeWidgetItem *spacecraft1 = new QTreeWidgetItem(spacecraftRoot);
-    spacecraft1->setText(0, "Spacecraft 1");
-    QTreeWidgetItem *spacecraft2 = new QTreeWidgetItem(spacecraftRoot);
-    spacecraft2->setText(0, "Spacecraft 2");
+    // ACTOR 1 TAB
+    // Adding spacecrafts on tree widget (ACTOR 1 TAB)
+    QTreeWidgetItem *spacecraftsRootTab1 = new QTreeWidgetItem(ui->actor1TreeWidget);
+    spacecraftsRootTab1->setText(0, "SPACECRAFTS");
+    QTreeWidgetItem *satelliteTab1 = new QTreeWidgetItem(spacecraftsRootTab1);
+    satelliteTab1->setText(0, "Satellite");
+    QTreeWidgetItem *spaceCapsuleTab1 = new QTreeWidgetItem(spacecraftsRootTab1);
+    spaceCapsuleTab1->setText(0, "Space Capsule");
 
-    // Adding meteor on tree widget (resources tab)
-    QTreeWidgetItem *meteorRoot = new QTreeWidgetItem(ui->resourcesTreeWidget);
-    meteorRoot->setText(0, "Meteor");
-    QTreeWidgetItem *meteor1 = new QTreeWidgetItem(meteorRoot);
-    meteor1->setText(0, "Meteor 1");
-    QTreeWidgetItem *meteor2 = new QTreeWidgetItem(meteorRoot);
-    meteor2->setText(0, "Meteor 2");
+    // Adding actions on tree widget (ACTOR 1 TAB)
+    QTreeWidgetItem *actionsRootTab1 = new QTreeWidgetItem(ui->actor1TreeWidget);
+    actionsRootTab1->setText(0, "ACTIONS");
+    QTreeWidgetItem *action1Tab1 = new QTreeWidgetItem(actionsRootTab1);
+    action1Tab1->setText(0, "Action 1");
+    QTreeWidgetItem *action2Tab1 = new QTreeWidgetItem(actionsRootTab1);
+    action2Tab1->setText(0, "Action 2");
 
-    // Adding satellite on tree widget (resources tab)
-    QTreeWidgetItem *satelliteRoot = new QTreeWidgetItem(ui->resourcesTreeWidget);
-    satelliteRoot->setText(0, "Satellite");
-    QTreeWidgetItem *satellite1 = new QTreeWidgetItem(satelliteRoot);
-    satellite1->setText(0, "Satellite 1");
-    QTreeWidgetItem *satellite2 = new QTreeWidgetItem(satelliteRoot);
-    satellite2->setText(0, "Satellite 2");
+    // Adding events on tree widget (ACTOR 1 TAB)
+    QTreeWidgetItem *eventsRootTab1 = new QTreeWidgetItem(ui->actor1TreeWidget);
+    eventsRootTab1->setText(0, "EVENTS");
+    QTreeWidgetItem *event1Tab1 = new QTreeWidgetItem(eventsRootTab1);
+    event1Tab1->setText(0, "Event 1");
+    QTreeWidgetItem *event2Tab1 = new QTreeWidgetItem(eventsRootTab1);
+    event2Tab1->setText(0, "Event 2");
 
 
-    ui->resourcesTreeWidget->expandAll();
+    ui->actor1TreeWidget->expandAll();
     ui->tabWidget->setCurrentIndex(0);
 
 
-    // MISSION TAB
-    // Adding spacecraft on tree widget (mission tab)
-    QTreeWidgetItem *spacecraftMissionRoot = new QTreeWidgetItem(ui->missionTreeWidget);
-    spacecraftMissionRoot->setText(0, "Spacecraft");
-    QTreeWidgetItem *spacecraftMission1 = new QTreeWidgetItem(spacecraftMissionRoot);
-    spacecraftMission1->setText(0, "Spacecraft 1");
-    QTreeWidgetItem *spacecraftMission2 = new QTreeWidgetItem(spacecraftMissionRoot);
-    spacecraftMission2->setText(0, "Spacecraft 2");
 
-    // Adding meteor on tree widget (mission tab)
-    QTreeWidgetItem *meteorMissionRoot = new QTreeWidgetItem(ui->missionTreeWidget);
-    meteorMissionRoot->setText(0, "Meteor");
-    QTreeWidgetItem *meteorMission1 = new QTreeWidgetItem(meteorMissionRoot);
-    meteorMission1->setText(0, "Meteor 1");
-    QTreeWidgetItem *meteorMission2 = new QTreeWidgetItem(meteorMissionRoot);
-    meteorMission2->setText(0, "Meteor 2");
+    // ACTOR 2 TAB
+    // Adding spacecrafts on tree widget (ACTOR 2 TAB)
+    QTreeWidgetItem *spacecraftsRootTab2 = new QTreeWidgetItem(ui->actor2TreeWidget);
+    spacecraftsRootTab2->setText(0, "SPACECRAFTS");
+    QTreeWidgetItem *satelliteTab2 = new QTreeWidgetItem(spacecraftsRootTab2);
+    satelliteTab2->setText(0, "Satellite");
+    QTreeWidgetItem *spaceCapsuleTab2 = new QTreeWidgetItem(spacecraftsRootTab2);
+    spaceCapsuleTab2->setText(0, "Space Capsule");
 
-    // Adding satellite on tree widget (mission tab)
-    QTreeWidgetItem *satelliteMissionRoot = new QTreeWidgetItem(ui->missionTreeWidget);
-    satelliteMissionRoot->setText(0, "Satellite");
-    QTreeWidgetItem *satelliteMission1 = new QTreeWidgetItem(satelliteMissionRoot);
-    satelliteMission1->setText(0, "Satellite 1");
-    QTreeWidgetItem *satelliteMission2 = new QTreeWidgetItem(satelliteMissionRoot);
-    satelliteMission2->setText(0, "Satellite 2");
+    // Adding actions on tree widget (ACTOR 2 TAB)
+    QTreeWidgetItem *actionsRootTab2 = new QTreeWidgetItem(ui->actor2TreeWidget);
+    actionsRootTab2->setText(0, "ACTIONS");
+    QTreeWidgetItem *action1Tab2 = new QTreeWidgetItem(actionsRootTab2);
+    action1Tab2->setText(0, "Action 1");
+    QTreeWidgetItem *action2Tab2 = new QTreeWidgetItem(actionsRootTab2);
+    action2Tab2->setText(0, "Action 2");
+
+    // Adding events on tree widget (ACTOR 2 TAB)
+    QTreeWidgetItem *eventsRootTab2 = new QTreeWidgetItem(ui->actor2TreeWidget);
+    eventsRootTab2->setText(0, "EVENTS");
+    QTreeWidgetItem *event1Tab2 = new QTreeWidgetItem(eventsRootTab2);
+    event1Tab2->setText(0, "Event 1");
+    QTreeWidgetItem *event2Tab2 = new QTreeWidgetItem(eventsRootTab2);
+    event2Tab2->setText(0, "Event 2");
 
 
-    ui->missionTreeWidget->expandAll();
+    ui->actor2TreeWidget->expandAll();
     ui->tabWidget->setCurrentIndex(1);
+
+
+    // ENVIRONMENT TAB
+    // Adding Planets on tree widget (ENVIRONMENT TAB)
+    QTreeWidgetItem *planetsRoot = new QTreeWidgetItem(ui->environmentTreeWidget);
+    planetsRoot->setText(0, "PLANETS");
+    QTreeWidgetItem *earthTreeView = new QTreeWidgetItem(planetsRoot);
+    earthTreeView->setText(0, "Earth");
+    QTreeWidgetItem *marsTreeView = new QTreeWidgetItem(planetsRoot);
+    marsTreeView->setText(0, "Mars");
+
+    // Adding Moon on tree widget (ENVIRONMENT TAB)
+    QTreeWidgetItem *moonRoot = new QTreeWidgetItem(ui->environmentTreeWidget);
+    moonRoot->setText(0, "MOON");
+
+    // Adding Meteors on tree widget (ENVIRONMENT TAB)
+    QTreeWidgetItem *meteorsRoot = new QTreeWidgetItem(ui->environmentTreeWidget);
+    meteorsRoot->setText(0, "METEORS");
+    QTreeWidgetItem *meteor1TreeView = new QTreeWidgetItem(meteorsRoot);
+    meteor1TreeView->setText(0, "Meteor 1");
+    QTreeWidgetItem *meteor2TreeView = new QTreeWidgetItem(meteorsRoot);
+    meteor2TreeView->setText(0, "Meteor 2");
+
+
+    ui->environmentTreeWidget->expandAll();
+    ui->tabWidget->setCurrentIndex(2);
+
+
 
 }
 
