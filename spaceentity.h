@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SPACEENTITY_H
 #define SPACEENTITY_H
 
@@ -7,24 +8,30 @@
 #include <vector>
 
 #include "base_definitions.h"
+#include "event.h"
 
 #include <boost/multiprecision/cpp_dec_float.hpp>
 
 using namespace boost::multiprecision;
 
-// Every property is calculated as SI unit.
+enum Status{
+    DESTROYED,
+    UNKNOWN,
+    LIVE
+};
 
+// Every property is calculated as SI unit.
+// Base class for all objects in space.
 class SpaceEntity
 {
 public:
 
     SpaceEntity();
 
-    QString id;
+    size_t id;
     QString name;
 
-    // destroyed = -1, unknown = 0, live = 1,
-    int status = 1;
+    Status status;
 
     // Calculated precise raw trajectory points.
     std::vector<PreciseVector3D> trajectory;
@@ -48,28 +55,33 @@ public:
 
     cpp_dec_float_100 mass;
 
-    static size_t entity_count;
+    std::map<size_t, event> naturalEvents;
+    static size_t entityCount;
 
 };
 
+// Represents any object that is not controllable by humanity and has not considerable effect on other objects in space.
 class StrayEntity : public SpaceEntity
 {
 public:
 
-    StrayEntity(PreciseVector3D position, cpp_dec_float_100 mass, QString id = "", QString name = "",
+    StrayEntity(PreciseVector3D position, cpp_dec_float_100 mass, QString name = "",
                 PreciseVector3D velocity = 0);
 
-    static size_t stray_count;
+    static size_t strayCount;
 };
 
+// Represents any object that is controllable by humanity in space.
 class VehicleEntity : public SpaceEntity
 {
 public:
 
-    VehicleEntity(PreciseVector3D position, cpp_dec_float_100 mass, QString id = "", QString name = "",
+    VehicleEntity(PreciseVector3D position, cpp_dec_float_100 mass, QString name = "",
                   PreciseVector3D velocity = 0, cpp_dec_float_100 max_thrust = 0, cpp_dec_float_100 fuel_cons_per_sec = 0,
                   cpp_dec_float_100 fuel = 0, cpp_dec_float_100 max_prop_thrust = 0, cpp_dec_float_100 prop_cons_per_sec = 0,
                   cpp_dec_float_100 prop_fuel = 0, int antenna_type = -1, cpp_dec_float_100 antenna_gain = 0, PreciseVector3D bearing = 0);
+
+    void runAction(action &act);
 
     // Direction where the vehicle is facing towards;
     // Spherical Coordinate System {r, angle(x), angle(z)} or proportional unit vector;
@@ -97,22 +109,26 @@ public:
     int antenna_type;
     cpp_dec_float_100 antenna_gain;
 
-    static size_t vehicle_count;
+    std::map<size_t, action> actions;
+
+    static size_t vehicleCount;
 };
 
+// Represents celestial mass body.
 class CelestialBody : public SpaceEntity
 {
 public:
 
     // Path equation is needed or we must calculate this too.
-    CelestialBody(PreciseVector3D position, cpp_dec_float_100 mass, QString id = "", QString name = "",
+    // Apparently we will calculate trajectory.
+    CelestialBody(PreciseVector3D position, cpp_dec_float_100 mass, QString name = "",
                   PreciseVector3D velocity = 0);
 
-    // mass * Gravitational constant (m * G)
+    // mass * Gravitational constant (G * m)
+    // Pre-calculated for optimization.
     cpp_dec_float_100 GM;
 
-    static size_t celestial_count;
+    static size_t celestialCount;
 };
-
 
 #endif // SPACEENTITY_H

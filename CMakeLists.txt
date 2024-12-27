@@ -19,10 +19,10 @@ qt_add_executable(SatSim
     electromagnetics.h electromagnetics.cpp
     base_definitions.h
     base_definitions.cpp
-    sceneloader.h sceneloader.cpp
+
     unittranslation.h unittranslation.cpp
     simdriver.h simdriver.cpp
-    simevent.h simevent.cpp
+    event.h event.cpp
 
 
 

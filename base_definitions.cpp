@@ -21,7 +21,7 @@ PreciseVector3D::PreciseVector3D()
     this->z = 0;
 }
 
-cpp_dec_float_100 PreciseVector3D::get_r(){
+cpp_dec_float_100 PreciseVector3D::get_scalar(){
     return sqrt(x*x + y*y + z*z);
 }
 

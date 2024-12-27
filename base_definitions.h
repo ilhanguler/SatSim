@@ -7,6 +7,8 @@ using namespace boost::multiprecision;
 
 // Gravitational Constant N⋅(m^2)⋅(kg^−2) SI Unit, according to latest researches
 const cpp_dec_float_100 GConst("6.67430e-11");
+typedef long long msecs;
+
 
 class PreciseVector3D
 {
@@ -23,7 +25,7 @@ class PreciseVector3D
     cpp_dec_float_100 y;
     cpp_dec_float_100 z;
 
-    cpp_dec_float_100 get_r();
+    cpp_dec_float_100 get_scalar();
 
     PreciseVector3D operator+ (const PreciseVector3D &vec) const;
 

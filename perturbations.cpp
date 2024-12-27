@@ -8,14 +8,14 @@ PreciseVector3D calcOneBody_Force(const CelestialBody &cb, const SpaceEntity &se
 }
 
 PreciseVector3D calcOneBody_Accel(const CelestialBody &cb, const SpaceEntity &se){
-    cpp_dec_float_100 GM_r = cb.GM / (cb.position - se.position).get_r();
+    cpp_dec_float_100 GM_r = cb.GM / (cb.position - se.position).get_scalar();
     return PreciseVector3D(GM_r*(cb.position.x-se.position.x),
                            GM_r*(cb.position.y-se.position.y),
                            GM_r*(cb.position.z-se.position.z));
 }
 
 void calcTwoBody(CelestialBody &cb_1, CelestialBody &cb_2){
-    cpp_dec_float_100 GM_r = cb_1.GM / (cb_1.position - cb_2.position).get_r();
+    cpp_dec_float_100 GM_r = cb_1.GM / (cb_1.position - cb_2.position).get_scalar();
     PreciseVector3D accel(GM_r*(cb_1.position.x-cb_2.position.x),
                           GM_r*(cb_1.position.y-cb_2.position.y),
                           GM_r*(cb_1.position.z-cb_2.position.z));

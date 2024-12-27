@@ -29,7 +29,7 @@ PreciseVector3D calcOneBody_Force(const CelestialBody& cb, const SpaceEntity& se
 // Calculates acceleration for two bodies and sets their acceleration vectors.
 void calcTwoBody(CelestialBody &cb_1, CelestialBody &cb_2);
 
-// Braindead solution with some optimizations.
+// Braindead solution with som  e optimizations.
 // Calculates trajectory for one small body that is insignificant for the system.
 void sgpTaylorOneBody(const std::vector<CelestialBody>& cbs, SpaceEntity &se,
                cpp_dec_float_100 deltaMSecs, cpp_dec_float_100 simLengthByHours);

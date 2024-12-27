@@ -2,5 +2,10 @@
 
 SimDriver::SimDriver() {}
 
+void SimDriver::compile()
+{
+
+}
+
 Player::Player(){}
 

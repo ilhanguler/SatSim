@@ -1,6 +1,7 @@
 #ifndef TIMEDRIVER_H
 #define TIMEDRIVER_H
 
+#include "base_definitions.h"
 #include <QDateTime>
 #include <QObject>
 #include <QElapsedTimer>
@@ -11,11 +12,11 @@ class TimeDriver : public QObject
 public:
     TimeDriver(QObject *parent = nullptr);
 
-    TimeDriver(QDateTime simTime, unsigned long long deltaMSecs);
+    TimeDriver(QDateTime simTime, msecs deltaMSecs);
 
     QDateTime systemTime = QDateTime::currentDateTime();
     QDateTime simTime = QDateTime::currentDateTime();
-    unsigned long long deltaMSecs = 1000;
+    msecs deltaMSecs = 1000;
     QElapsedTimer timer;
 
     void passDeltaTime();
