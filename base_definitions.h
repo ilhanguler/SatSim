@@ -7,13 +7,17 @@ using namespace boost::multiprecision;
 
 // Gravitational Constant N⋅(m^2)⋅(kg^−2) SI Unit, according to latest researches
 const cpp_dec_float_100 GConst("6.67430e-11");
+typedef long long msecs;
+
 
 class PreciseVector3D
 {
     public:
-    PreciseVector3D(cpp_dec_float_100 x, cpp_dec_float_100 y ,cpp_dec_float_100 z);
+    PreciseVector3D(const cpp_dec_float_100 &x, const cpp_dec_float_100 &y, const cpp_dec_float_100 &z);
 
-    PreciseVector3D(PreciseVector3D const& vec);
+    PreciseVector3D(const PreciseVector3D &vec);
+
+    PreciseVector3D(int c);
 
     PreciseVector3D();
 
@@ -21,21 +25,30 @@ class PreciseVector3D
     cpp_dec_float_100 y;
     cpp_dec_float_100 z;
 
-    PreciseVector3D operator+ (PreciseVector3D const& vec);
+    cpp_dec_float_100 get_scalar();
 
-    PreciseVector3D operator* (cpp_dec_float_100 c);
+    PreciseVector3D operator+ (const PreciseVector3D &vec) const;
 
-    PreciseVector3D operator- (PreciseVector3D const& vec);
+    PreciseVector3D operator- (const PreciseVector3D &vec) const;
 
-    PreciseVector3D operator/ (cpp_dec_float_100 c);
+    PreciseVector3D operator/ (const cpp_dec_float_100 &c) const;
 
-    PreciseVector3D& operator+= (PreciseVector3D const& vec);
+    PreciseVector3D operator* (const cpp_dec_float_100 &c) const;
 
-    PreciseVector3D& operator-= (PreciseVector3D const& vec);
+    void operator+= (const PreciseVector3D &vec);
 
-    PreciseVector3D& operator= (PreciseVector3D const& vec);
+    void operator-= (const PreciseVector3D &vec);
 
-    PreciseVector3D& operator= (cpp_dec_float_100 c);
+    void operator= (const PreciseVector3D &vec);
+
+    void operator=(int c);
+};
+
+class Vector3D{
+public:
+    double x;
+    double y;
+    double z;
 };
 
 #endif // BASE_DEFINITIONS_H

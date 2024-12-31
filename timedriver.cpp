@@ -7,7 +7,7 @@ TimeDriver::TimeDriver(QObject *parent)
 
 }
 
-TimeDriver::TimeDriver(QDateTime simTime, qint64 deltaMSecs)
+TimeDriver::TimeDriver(QDateTime simTime, msecs deltaMSecs)
 {
     this->simTime = simTime;
     this->deltaMSecs = deltaMSecs;
