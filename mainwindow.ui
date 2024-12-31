@@ -10,31 +10,953 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>25</height>
-    </rect>
+  <property name="font">
+   <font>
+    <family>Helvetica</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Simulation</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::GoHome"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+background-color: #112D4E;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
    </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>240</width>
+      <height>630</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica Neue</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTabWidget{
+background-color:#D6CDA4;
+}</string>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::TabPosition::North</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::TabShape::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="usesScrollButtons">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="actor1Tab">
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <attribute name="title">
+      <string>Actor 1</string>
+     </attribute>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QTreeWidget" name="actor1TreeWidget">
+        <property name="styleSheet">
+         <string notr="true">QTreeWidget {
+background-color: #1C6758;
+border-radius: 7px;
+}</string>
+        </property>
+        <attribute name="headerVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="actor2Tab">
+     <property name="layoutDirection">
+      <enum>Qt::LayoutDirection::LeftToRight</enum>
+     </property>
+     <attribute name="title">
+      <string>Actor 2</string>
+     </attribute>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QTreeWidget" name="actor2TreeWidget">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTreeWidget {
+background-color: #115144;
+border-radius: 7px;
+}</string>
+        </property>
+        <attribute name="headerVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="environmentTab">
+     <attribute name="title">
+      <string>Environment</string>
+     </attribute>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QTreeWidget" name="environmentTreeWidget">
+        <property name="minimumSize">
+         <size>
+          <width>194</width>
+          <height>569</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTreeWidget {
+background-color: #1C6758;
+border-radius: 7px;
+}</string>
+        </property>
+        <attribute name="headerVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QTextEdit" name="simulateTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>505</x>
+      <y>10</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}
+
+</string>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="simulateButton">
+    <property name="geometry">
+     <rect>
+      <x>395</x>
+      <y>10</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3F72AF; 
+    text-align: center;
+    color: #FEFBF6;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #2A5890; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>SIMULATE</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="forwardButton">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>10</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #3F72AF; 
+    color: #FEFBF6;
+    text-align: center;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #2A5890; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>T-MINUS</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="forwardTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>10</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}
+
+</string>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="reportGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>420</y>
+      <width>500</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Helvetica Neue</family>
+      <pointsize>14</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>Report</string>
+    </property>
+    <widget class="QLabel" name="positionLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>35</y>
+       <width>85</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Position :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="velocityLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>65</y>
+       <width>85</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Velocity :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="accelerationLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>95</y>
+       <width>85</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Acceleration :</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="positionTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>35</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="velocityTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>65</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="accelerationTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>95</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="jerkLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>125</y>
+       <width>85</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Jerk :</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="jerkTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>125</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="snapLabel">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>35</y>
+       <width>70</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Snap :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="crackLabel">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>65</y>
+       <width>70</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Crack :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="forceLabel">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>95</y>
+       <width>70</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Force :</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="snapTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>35</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="crackTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>65</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="forceTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>95</y>
+       <width>120</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #1C6758; 
+    text-align: center;
+    color: #FEFBF6;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #115144; 
+}</string>
+    </property>
+    <property name="text">
+     <string>LOAD SCENE</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="thrustGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>60</y>
+      <width>231</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox{
+background-color:#23466F;
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QTextEdit" name="valueTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>20</y>
+       <width>104</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="valueLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Value :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="xLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="xTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>60</y>
+       <width>104</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="yLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>110</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Y</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="yTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>100</y>
+       <width>104</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="zLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>150</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Helvetica Neue</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+color: #FEFBF6;
+}</string>
+     </property>
+     <property name="text">
+      <string>Z</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="zTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>140</y>
+       <width>104</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit {
+    background-color: #DBE2EF; 
+    color: #112D4E;
+    font-size: 12px; 
+    font-weight: lighter; 
+}</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="thrustButton">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>190</y>
+       <width>100</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #3F72AF; 
+    text-align: center;
+    color: #FEFBF6;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #2A5890; 
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>APPLIED THRUST</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="trainButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>60</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #A67B5B; 
+    color: #FEFBF6;
+    text-align: center;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #6F4E37; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>TRAIN</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="analysisButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>100</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #A67B5B; 
+    color: #FEFBF6;
+    text-align: center;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #6F4E37; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>ANALYSIS</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.19)
 project(SatSim LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets 3DCore 3DRender 3DInput 3DExtras)
+
 
 qt_standard_project_setup()
 
@@ -19,12 +20,10 @@ qt_add_executable(SatSim
     electromagnetics.h electromagnetics.cpp
     base_definitions.h
     base_definitions.cpp
-
     unittranslation.h unittranslation.cpp
     simdriver.h simdriver.cpp
     event.h event.cpp
-
-
+    earth_view.h earth_view.cpp earth_view.ui
 
 )
 
@@ -35,6 +34,10 @@ target_link_libraries(SatSim
     PRIVATE
         Qt::Core
         Qt::Widgets
+        Qt::3DCore
+        Qt::3DRender
+        Qt::3DInput
+        Qt::3DExtras
 )
 
 include(GNUInstallDirs)
