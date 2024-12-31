@@ -10,6 +10,9 @@
 #include <Qt3DExtras/QPhongMaterial>
 #include <Qt3DExtras/QCylinderMesh>
 #include <Qt3DExtras/QCuboidMesh>
+#include <Qt3DCore/QBuffer>
+#include <Qt3DCore/QAttribute>
+
 
 
 namespace Ui {
@@ -34,7 +37,13 @@ private:
     Qt3DCore::QTransform *meteorTransform;
     Qt3DCore::QEntity *spacecraftEntity;
     Qt3DCore::QTransform *spacecraftTransform;
+    Qt3DCore::QEntity *orbitEntity;        // Yörünge çizen varlık
+    Qt3DCore::QGeometry *orbitGeometry;    // Yörünge geometrisi
+    Qt3DCore::QAttribute *positionAttribute;
+    Qt3DCore::QBuffer *positionBuffer;     // Konum verilerini tutan tampon
+    QVector<QVector3D> orbitPoints;        // Yörünge noktaları
 
+    void updateOrbit(); // Yörüngeyi güncelleyen fonksiyon
 
 private slots:
 

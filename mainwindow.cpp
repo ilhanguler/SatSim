@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setFixedSize(900, 650); //Main window size
+    setFixedSize(850, 650); //Main window size
 
     earth_view = new class earth_view(nullptr);
 

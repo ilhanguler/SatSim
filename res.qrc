@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/icons">
-        <file>forward.png</file>
-        <file>play-circle.png</file>
-    </qresource>
-</RCC>

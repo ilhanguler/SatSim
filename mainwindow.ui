@@ -62,7 +62,7 @@ background-color:#D6CDA4;
      <enum>QTabWidget::TabShape::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <property name="iconSize">
      <size>
@@ -306,7 +306,7 @@ QPushButton:hover {
      <rect>
       <x>260</x>
       <y>420</y>
-      <width>630</width>
+      <width>500</width>
       <height>160</height>
      </rect>
     </property>
@@ -898,6 +898,64 @@ QPushButton:hover {
       <string>APPLIED THRUST</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="trainButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>60</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #A67B5B; 
+    color: #FEFBF6;
+    text-align: center;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #6F4E37; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>TRAIN</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="analysisButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>100</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #A67B5B; 
+    color: #FEFBF6;
+    text-align: center;
+    border-radius:7px;
+    font-size: 10px; 
+    font-weight: lighter; 
+}
+
+QPushButton:hover {
+    background-color: #6F4E37; 
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>ANALYSIS</string>
+    </property>
    </widget>
   </widget>
  </widget>

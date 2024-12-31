@@ -15,7 +15,7 @@ qt_add_executable(SatSim
     timedriver.h timedriver.cpp
     spaceentity.h spaceentity.cpp
     earth_view.h earth_view.cpp earth_view.ui
-    res.qrc
+
 
 
 
