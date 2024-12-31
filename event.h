@@ -4,38 +4,49 @@
 
 #include "base_definitions.h"
 
+// Every event type has to be registered here.
 enum EventType{
-    EVENT,
-    ACTION,
+    COLLISION,
+    BURNOUT
 };
 
-// Base class for all events. Represents non-user defined and simulation driven events.
-class Event
+// Request flag for change of time step value.
+// DEFAULT : Set to default.
+// NO_PREF : Does not matter.
+// CHANGE : Set to another one.
+enum TimeStepRequest{
+    DEFAULT = -1,
+    NO_PREF = 0,
+    CHANGE = 1
+};
+
+// Events are standalone events that happens at one time.
+// To neutralize the effects of events, you have to create another one to counter the effects of it.
+
+// Base class for all events. Represents user defined and simulation driven events.
+class EventBase
 {
 public:
-    Event();
-    template <class T>
-    void run(T arg);
+    EventBase();
 
     size_t id;
-    EventType tpye;
+
+    // The reason behind this is that compilation of events into executable format in simulation driver,
+    // requires creation and management of unnecessary datas that exist in event class allready!.
+    // That way we will define events as pairs to overcome this problem.
+    size_t id_pair;
 
     msecs tMinus;
     msecs tAbsolute;
+    msecs duration;
+    msecs timeStep;
+
+    TimeStepRequest request;
 
     static size_t count;
 };
 
-// Base class for actions. Derived from Event class. Represents user defined actions.
-class Action : public Event
-{
-public:
-    Action();
-
-    msecs duration;
-};
-
-class BurnOut : public Action{
+class BurnOut{
 public:
     BurnOut();
     template <class T>
@@ -44,7 +55,7 @@ public:
     PreciseVector3D thrust;
 };
 
-class Collision : public Event
+class Collision
 {
 public:
     Collision();
@@ -53,16 +64,15 @@ public:
 
 };
 
-// Non-user defined event collection
-union event{
-    Event event;
-    Collision collision;
-};
+// Event collection. Every event has to be registered here.
+class Event : public EventBase{
+public:
+    EventType type;
 
-// User defined action collection
-union action{
-    Action action;
-    BurnOut burnout;
+    union{
+        Collision collision;
+        BurnOut burnout;
+    };
 };
 
 #endif // SIMEVENT_H

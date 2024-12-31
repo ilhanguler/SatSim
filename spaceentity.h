@@ -55,7 +55,9 @@ public:
 
     cpp_dec_float_100 mass;
 
-    std::map<size_t, event> naturalEvents;
+    // Sorted by time points.
+    std::multimap<msecs, Event> events;
+
     static size_t entityCount;
 
 };
@@ -80,8 +82,6 @@ public:
                   PreciseVector3D velocity = 0, cpp_dec_float_100 max_thrust = 0, cpp_dec_float_100 fuel_cons_per_sec = 0,
                   cpp_dec_float_100 fuel = 0, cpp_dec_float_100 max_prop_thrust = 0, cpp_dec_float_100 prop_cons_per_sec = 0,
                   cpp_dec_float_100 prop_fuel = 0, int antenna_type = -1, cpp_dec_float_100 antenna_gain = 0, PreciseVector3D bearing = 0);
-
-    void runAction(action &act);
 
     // Direction where the vehicle is facing towards;
     // Spherical Coordinate System {r, angle(x), angle(z)} or proportional unit vector;
@@ -109,8 +109,6 @@ public:
     int antenna_type;
     cpp_dec_float_100 antenna_gain;
 
-    std::map<size_t, action> actions;
-
     static size_t vehicleCount;
 };
 
@@ -126,7 +124,7 @@ public:
 
     // mass * Gravitational constant (G * m)
     // Pre-calculated for optimization.
-    cpp_dec_float_100 GM;
+    cpp_dec_float_100 mG;
 
     static size_t celestialCount;
 };

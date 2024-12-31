@@ -15,10 +15,10 @@ namespace sgp
 
 // Position difference between body and entity is V[a, b, c];
 // Acceleration and force vector that applies to space entity is V[aq, bq, cq];
-// q is proportional distribution unit of acceleration between dimensions
+// q is proportional distribution unit of acceleration between dimensions;
 // g = m*G/r^2;
 // g^2 = (aq)^2 + (bq)^2 + (cq)^2  --->  q = g / sqrt(a^2 + b^2 + c^2);
-// Therefore we can say q = mG/r and calculate acceleration vector easily.
+// Therefore we can say q = mG/r^3 and calculate acceleration vector easily.
 // Calculates and returns acceleration for one body.
 PreciseVector3D calcOneBody_Accel(const CelestialBody& cb, const SpaceEntity& se);
 

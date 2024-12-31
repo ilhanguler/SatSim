@@ -19,10 +19,10 @@ public:
     Player();
 
     size_t id;
-
     PlayerType type;
-
     std::map<size_t, VehicleEntity> vehicles;
+
+    static size_t count;
 
 };
 
@@ -30,44 +30,25 @@ public:
 class Nature
 {
 public:
-    std::map<size_t, VehicleEntity> celestialBodies;
-    std::map<size_t, VehicleEntity> strayEntities;
+    std::map<size_t, CelestialBody> celestialBodies;
+    std::map<size_t, StrayEntity> strayEntities;
 };
 
-// Collection of event ids for not controllable events that occured in simulation.
-class EventPoint
+class TimePoint
 {
 public:
-    size_t entityID;
-    std::vector<size_t> eventIDs;
-};
+    TimePoint(const Event &e);
 
-// Collection of action ids and particular vehicle id to run.
-class VehicleInstruction
-{
-public:
-    size_t vehicleID;
-    std::vector<size_t> actionIDs;
-};
+    // Adjust an existing time point.
+    void adjust(const Event &e);
+    void filterTimeStep();
 
-// Collection of vehicle instructions and particular player id to run.
-class PlayerInstruction
-{
-public:
-    size_t playerID;
-    std::vector<VehicleInstruction> vehicleInstructions;
-};
+    msecs timePoint;
+    msecs maxTimeStep;
+    int requestBalance = 0;
 
-// Collection of time points and player instructions to run.
-class SimInstruction
-{
-public:
-    msecs begin;
-    msecs end;
-    msecs timeStep;
-    std::vector<PlayerInstruction> playerInstructions;
-    std::vector<EventPoint> eventPoints;
-
+    static std::map<size_t, msecs> timeSteps;
+    static int requestTotal;
 };
 
 // Manages simulation, players, nature, time and their properties.
@@ -76,14 +57,21 @@ class SimDriver
 public:
     SimDriver();
 
-    Nature nature;
-    std::map<size_t, Player> players;
-    SimInstruction compiledInstruction;
-    TimeDriver time;
-
     void run();
     void stop();
+
+    // Compile events into time points to execute.
     void compile();
+
+    void registerEvent(const Event &e);
+
+    Nature nature;
+    std::map<size_t, Player> players;
+    TimeDriver time;
+
+    // It will sort itself automatically and there will be not a duplicate member.
+    // I am lazy and can't really bother with this rn.
+    std::map<msecs, TimePoint> timePoints;
 
 };
 

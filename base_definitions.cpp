@@ -1,6 +1,6 @@
 #include "base_definitions.h"
 
-PreciseVector3D::PreciseVector3D(cpp_dec_float_100 x, cpp_dec_float_100 y, cpp_dec_float_100 z){
+PreciseVector3D::PreciseVector3D(const cpp_dec_float_100 &x, const cpp_dec_float_100 &y, const cpp_dec_float_100 &z){
     this->x = x;
     this->y = y;
     this->z = z;
@@ -29,16 +29,16 @@ PreciseVector3D PreciseVector3D::operator+(const PreciseVector3D &vec) const{
     return PreciseVector3D(x + vec.x, y + vec.y, z + vec.z);
 }
 
-PreciseVector3D PreciseVector3D::operator*(cpp_dec_float_100 c) const{
-    return PreciseVector3D(x * c, y * c, z * c);
-}
-
 PreciseVector3D PreciseVector3D::operator-(const PreciseVector3D &vec) const{
     return PreciseVector3D(x - vec.x, y - vec.y, z - vec.z);
 }
 
-PreciseVector3D PreciseVector3D::operator/(cpp_dec_float_100 c) const{
+PreciseVector3D PreciseVector3D::operator/(const cpp_dec_float_100 &c) const{
     return PreciseVector3D(x / c, y / c, z / c);
+}
+
+PreciseVector3D PreciseVector3D::operator*(const cpp_dec_float_100 &c) const{
+    return PreciseVector3D(x * c, y * c, z * c);
 }
 
 void PreciseVector3D::operator+=(const PreciseVector3D &vec){
@@ -59,7 +59,7 @@ void PreciseVector3D::operator=(const PreciseVector3D &vec){
     z = vec.z;
 }
 
-void PreciseVector3D::operator=(const int &c){
+void PreciseVector3D::operator=(int c){
     x = y = z = c;
 }
 

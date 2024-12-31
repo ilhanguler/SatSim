@@ -13,7 +13,7 @@ typedef long long msecs;
 class PreciseVector3D
 {
     public:
-    PreciseVector3D(cpp_dec_float_100 x, cpp_dec_float_100 y ,cpp_dec_float_100 z);
+    PreciseVector3D(const cpp_dec_float_100 &x, const cpp_dec_float_100 &y, const cpp_dec_float_100 &z);
 
     PreciseVector3D(const PreciseVector3D &vec);
 
@@ -29,11 +29,11 @@ class PreciseVector3D
 
     PreciseVector3D operator+ (const PreciseVector3D &vec) const;
 
-    PreciseVector3D operator* (cpp_dec_float_100 c) const;
-
     PreciseVector3D operator- (const PreciseVector3D &vec) const;
 
-    PreciseVector3D operator/ (cpp_dec_float_100 c) const;
+    PreciseVector3D operator/ (const cpp_dec_float_100 &c) const;
+
+    PreciseVector3D operator* (const cpp_dec_float_100 &c) const;
 
     void operator+= (const PreciseVector3D &vec);
 
@@ -41,7 +41,7 @@ class PreciseVector3D
 
     void operator= (const PreciseVector3D &vec);
 
-    void operator=(const int &c);
+    void operator=(int c);
 };
 
 class Vector3D{

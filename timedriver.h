@@ -15,7 +15,7 @@ public:
     TimeDriver(QDateTime simTime, msecs deltaMSecs);
 
     QDateTime systemTime = QDateTime::currentDateTime();
-    QDateTime simTime = QDateTime::currentDateTime();
+    QDateTime simTime;
     msecs deltaMSecs = 1000;
     QElapsedTimer timer;
 

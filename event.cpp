@@ -1,7 +1,15 @@
 #include "event.h"
 
-template<class T>
-void Event::run(T arg)
+
+EventBase::EventBase() {}
+
+
+BurnOut::BurnOut()
+{
+
+}
+
+Collision::Collision()
 {
 
 }
@@ -14,24 +22,6 @@ void BurnOut::run(T &vehicle)
 
 template<class T>
 void Collision::run(T arg)
-{
-
-}
-
-Event::Event() {}
-
-
-Action::Action()
-{
-
-}
-
-BurnOut::BurnOut()
-{
-
-}
-
-Collision::Collision()
 {
 
 }

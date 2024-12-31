@@ -57,7 +57,7 @@ CelestialBody::CelestialBody(PreciseVector3D position, cpp_dec_float_100 mass, Q
     this->name = name;
     this->velocity = velocity;
 
-    GM = mass * GConst;
+    mG = mass * GConst;
 
     id = celestialCount;
 
