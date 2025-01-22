@@ -2,54 +2,10 @@
 #define SIMDRIVER_H
 
 #include "base_definitions.h"
-#include "event.h"
 #include "spaceentity.h"
-#include "timedriver.h"
-
-enum PlayerType{
-    ENEMY,
-    NEUTR,
-    ALLY
-};
-
-// Controllable user.
-class Player
-{
-public:
-    Player();
-
-    size_t id;
-    PlayerType type;
-    std::map<size_t, VehicleEntity> vehicles;
-
-    static size_t count;
-
-};
-
-// Not controllable. It is mother nature.
-class Nature
-{
-public:
-    std::map<size_t, CelestialBody> celestialBodies;
-    std::map<size_t, StrayEntity> strayEntities;
-};
-
-class TimePoint
-{
-public:
-    TimePoint(const Event &e);
-
-    // Adjust an existing time point.
-    void adjust(const Event &e);
-    void filterTimeStep();
-
-    msecs timePoint;
-    msecs maxTimeStep;
-    int requestBalance = 0;
-
-    static std::map<size_t, msecs> timeSteps;
-    static int requestTotal;
-};
+#include "timepoint.h"
+#include "simcore.h"
+#include "player.h"
 
 // Manages simulation, players, nature, time and their properties.
 class SimDriver
@@ -57,22 +13,44 @@ class SimDriver
 public:
     SimDriver();
 
+    // Run simulation after compilation finished.
+    // compile -> run
     void run();
-    void stop();
 
     // Compile events into time points to execute.
+    // compile -> run
     void compile();
 
-    void registerEvent(const Event &e);
+    // Prepare simCore properties before running the simulation.
+    // This function has to be called for each TimePoints.
+    void prepareSimCore(const TimePoint &tp);
 
-    Nature nature;
+    void initialize(CelestialBody &&celestialBody);
+
+    void initialize(StrayEntity &&strayEntity);
+
+    void initialize(size_t playerID, VehicleEntity &&vehicle);
+
+    void initialize(Player &&player);
+
+    template<class T>
+    void registerEvent(const T &e)
+    {
+        auto tpItr = timePoints.find(e.timeMSecs);
+
+        if(tpItr == timePoints.end()){
+            timePoints.insert({e.timeMSecs, TimePoint(e)});
+        }else{
+            tpItr->second.adjust(e);
+        }
+    }
+
+    SimCore simCore;
+    Enviroment enviroment;
     std::map<size_t, Player> players;
-    TimeDriver time;
 
     // It will sort itself automatically and there will be not a duplicate member.
-    // I am lazy and can't really bother with this rn.
     std::map<msecs, TimePoint> timePoints;
-
 };
 
 #endif // SIMDRIVER_H
