@@ -1,0 +1,68 @@
+{
+  "players": [
+    {
+      "type": 0,
+      "vehicles": [
+        {
+          "pos": {
+            "x": "0",
+            "y": "0",
+            "z": "0"
+          },
+          "mass": "10",
+          "radius": "1",
+          "name": "v",
+          "velocity": {
+            "x": "0",
+            "y": "0",
+            "z": "0"
+          },
+          "maxThrust": "0",
+          "fuelConsPerMSec": "0",
+          "fuel": "0",
+          "antenna": "0",
+          "antennaGain": "0",
+          "bearing": {
+            "x": "0",
+            "y": "0",
+            "z": "0"
+          }
+        }
+      ]
+    }
+  ],
+  "strays": [
+    {
+      "pos": {
+        "x": "0",
+        "y": "0",
+        "z": "0"
+      },
+      "mass": "0",
+      "radius": "0",
+      "name": "0",
+      "velocity": {
+        "x": "0",
+        "y": "0",
+        "z": "0"
+      }
+    }
+  ],
+  "celestials": [
+    {
+      "pos": {
+        "x": "0",
+        "y": "0",
+        "z": "0"
+      },
+      "mass": "0",
+      "radius": "0",
+      "name": "0",
+      "velocity": {
+        "x": "0",
+        "y": "0",
+        "z": "0"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/scenes">
+        <file>scene1.json</file>
+        <file>scene2.json</file>
+    </qresource>
+</RCC>

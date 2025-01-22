@@ -3,6 +3,7 @@ project(SatSim LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets 3DCore 3DRender 3DInput 3DExtras)
 
+set(CMAKE_AUTORCC ON)
 
 qt_standard_project_setup()
 
@@ -12,11 +13,11 @@ qt_add_executable(SatSim
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-    timedriver.h timedriver.cpp
+
     spaceentity.h spaceentity.cpp
     vcpkg.json
-    perturbations.cpp
-    perturbations.h
+    simcore.cpp
+    simcore.h
     electromagnetics.h electromagnetics.cpp
     base_definitions.h
     base_definitions.cpp
@@ -24,6 +25,16 @@ qt_add_executable(SatSim
     simdriver.h simdriver.cpp
     event.h event.cpp
     earth_view.h earth_view.cpp earth_view.ui
+    timepoint.h timepoint.cpp
+    player.h player.cpp
+    simguicomponent.h simguicomponent.cpp
+    scenemanager.h scenemanager.cpp
+    scene1.json
+    scene2.json
+    embedded.qrc
+    sceneSchema.json
+    simgui3d.h simgui3d.cpp
+    simguimanager.h simguimanager.cpp
 
 )
 
