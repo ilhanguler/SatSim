@@ -1,7 +1,4 @@
 #include "earth_view.h"
-#include "ui_earth_view.h"
-#include <QVBoxLayout>
-#include <QDebug>
 
 earth_view::earth_view(QWidget *parent)
     : QWidget(parent)
@@ -12,10 +9,19 @@ earth_view::earth_view(QWidget *parent)
     //setFixedSize(900, 650);
 
     view = new Qt3DExtras::Qt3DWindow();
+
     container = QWidget::createWindowContainer(view, this);
     container->setFocusPolicy(Qt::StrongFocus);
 
     rootEntity = new Qt3DCore::QEntity();
+
+    camera = view->camera();
+    camera->setPosition(QVector3D(0, 0, 10));
+    camera->setViewCenter(QVector3D(0, 0, 0));
+    //camera->lens()->setPerspectiveProjection(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
+
+    camController = new Qt3DExtras::QOrbitCameraController(rootEntity);
+    camController->setCamera(camera);
 
 
     // EARTH
@@ -29,12 +35,6 @@ earth_view::earth_view(QWidget *parent)
     Qt3DCore::QEntity *earthEntity = new Qt3DCore::QEntity(rootEntity);
     earthEntity->addComponent(earthSphere);
     earthEntity->addComponent(earthMaterial);
-
-    // Earth camera
-    Qt3DRender::QCamera *earthCamera = view->camera();
-    earthCamera->lens()->setPerspectiveProjection(45.0f, 16.0f / 9.0f, 0.1f, 100.0f);
-    earthCamera->setPosition(QVector3D(0, 0, 4.0f));
-    earthCamera->setViewCenter(QVector3D(0, 0, 0));
 
 
     // MOON
@@ -96,7 +96,7 @@ earth_view::earth_view(QWidget *parent)
     vertexData.resize(3 * sizeof(float) * numVertices); // 3 boyutlu koordinatlar (x, y, z)
     float *rawVertexData = reinterpret_cast<float *>(vertexData.data());
 
-    qDebug() << "Creating vertex data for ellipse...";
+    //qDebug() << "Creating vertex data for ellipse...";
 
     // Elips yörünge verileri oluştur
     float radiusX = 2.0f;
@@ -107,7 +107,7 @@ earth_view::earth_view(QWidget *parent)
         rawVertexData[3 * i + 1] = radiusY * sin(angle); // Y
         rawVertexData[3 * i + 2] = 0.0f;               // Z (düzlemde)
 
-        qDebug() << "Vertex" << i << ":" << rawVertexData[3 * i] << rawVertexData[3 * i + 1] << rawVertexData[3 * i + 2];
+       // qDebug() << "Vertex" << i << ":" << rawVertexData[3 * i] << rawVertexData[3 * i + 1] << rawVertexData[3 * i + 2];
     }
 
     // Veriyi buffer'a ekle
@@ -123,7 +123,7 @@ earth_view::earth_view(QWidget *parent)
     positionAttribute->setByteOffset(0);
     positionAttribute->setByteStride(3 * sizeof(float));
     positionAttribute->setCount(numVertices);
-    qDebug() << "Position attribute count:" << positionAttribute->count();
+    //qDebug() << "Position attribute count:" << positionAttribute->count();
 
     // Geometriye attribute ekle
     geometry->addAttribute(positionAttribute);
@@ -135,7 +135,7 @@ earth_view::earth_view(QWidget *parent)
     geometryRenderer->setGeometry(geometry);
 
     geometryRenderer->setPrimitiveType(Qt3DRender::QGeometryRenderer::LineStrip); // Çizgiler için
-    qDebug() << "Geometry renderer type:" << geometryRenderer->primitiveType();
+    //qDebug() << "Geometry renderer type:" << geometryRenderer->primitiveType();
 
     Qt3DExtras::QPhongMaterial *lineMaterial = new Qt3DExtras::QPhongMaterial();
     lineMaterial->setDiffuse(QColor(0x00FF00)); // Yeşil renk
@@ -187,7 +187,7 @@ earth_view::earth_view(QWidget *parent)
 void earth_view::moveMeteor() {
     static float angle = 0.0f;
     static int callCount = 0;
-    qDebug() << "moveMeteor called, count:" << ++callCount;
+    //qDebug() << "moveMeteor called, count:" << ++callCount;
 
     // Hareket açısını güncelle
     angle += 0.02f;
@@ -201,29 +201,29 @@ void earth_view::moveMeteor() {
     if (meteorTransform) {
         meteorTransform->setTranslation(currentPosition);
     } else {
-        qWarning() << "meteorTransform is null.";
+      //  qWarning() << "meteorTransform is null.";
         return;
     }
 
     // Yeni konumu yörüngeye ekle
     orbitPoints.append(currentPosition);
-     qDebug() << "Orbit points size:" << orbitPoints.size(); // Listenin boyutunu kontrol edin
+    // qDebug() << "Orbit points size:" << orbitPoints.size(); // Listenin boyutunu kontrol edin
 
     // Yeterli nokta varsa yörüngeyi güncelle
     if (orbitPoints.size() >= 2) {
         updateOrbit();
     } else {
-        qDebug() << "Not enough points to render orbit.";
+       // qDebug() << "Not enough points to render orbit.";
     }
 
-    qDebug() << "Current meteor position:" << currentPosition;
+    //qDebug() //<< "Current meteor position:" << currentPosition;
 }
 
 
 
 void earth_view::updateOrbit() {
     if (!positionBuffer) {
-        qWarning() << "Position buffer is not initialized.";
+        //qWarning() << "Position buffer is not initialized.";
         return;
     }
 
@@ -239,7 +239,7 @@ void earth_view::updateOrbit() {
         data[3 * i + 2] = orbitPoints[i].z();
     }
 
-    qDebug() << "Updating orbit with" << orbitPoints.size() << "points.";
+    //qDebug() << "Updating orbit with" << orbitPoints.size() << "points.";
     positionBuffer->setData(positionData);
 }
 
