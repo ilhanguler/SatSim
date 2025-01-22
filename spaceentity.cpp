@@ -1,5 +1,7 @@
 #include "spaceentity.h"
 
+// Static members
+
 size_t SpaceEntity::entityCount = 0;
 size_t StrayEntity::strayCount = 0;
 size_t VehicleEntity::vehicleCount = 0;
@@ -10,11 +12,15 @@ SpaceEntity::SpaceEntity()
     entityCount++;
 }
 
-StrayEntity::StrayEntity(PreciseVector3D position, cpp_dec_float_100 mass, QString name,
-                         PreciseVector3D velocity)
+StrayEntity::StrayEntity(const PreciseVector3D &position,
+                         const cpp_dec_float_100 &mass,
+                         const cpp_dec_float_100 &radius,
+                         const QString &name,
+                         const PreciseVector3D &velocity)
 {
     this->position = position;
     this->mass = mass;
+    this->radius = radius;
     this->name = name;
     this->velocity = velocity;
 
@@ -24,36 +30,100 @@ StrayEntity::StrayEntity(PreciseVector3D position, cpp_dec_float_100 mass, QStri
     entityCount++;
 }
 
-VehicleEntity::VehicleEntity(PreciseVector3D position, cpp_dec_float_100 mass, QString name,
-                             PreciseVector3D velocity, cpp_dec_float_100 max_thrust, cpp_dec_float_100 fuel_cons_per_sec,
-                             cpp_dec_float_100 fuel, cpp_dec_float_100 max_prop_thrust, cpp_dec_float_100 prop_cons_per_sec,
-                             cpp_dec_float_100 prop_fuel, int antenna_type, cpp_dec_float_100 antenna_gain, PreciseVector3D bearing)
+VehicleEntity::VehicleEntity(const PreciseVector3D &position,
+                             const cpp_dec_float_100 &mass,
+                             const cpp_dec_float_100 &radius,
+                             const QString &name,
+                             const PreciseVector3D &velocity,
+                             const cpp_dec_float_100 &maxThrust,
+                             const cpp_dec_float_100 &fuelConsPerMSec,
+                             const cpp_dec_float_100 &fuel,
+                             const AntennaType &antenna,
+                             const cpp_dec_float_100 &antennaGain,
+                             const PreciseVector3D &bearing)
 {
     this->position = position;
     this->mass = mass;
+    this->radius = radius;
     this->name = name;
     this->velocity = velocity;
-    this->max_thrust = max_thrust;
-    this->fuel_cons_per_sec = fuel_cons_per_sec;
+    this->maxThrust = maxThrust;
+    this->fuelConsPerMSec = fuelConsPerMSec;
     this->fuel = fuel;
-    this->max_prop_thrust = max_prop_thrust;
-    this->prop_cons_per_sec = prop_cons_per_sec;
-    this->prop_fuel = prop_fuel;
-    this->antenna_type = antenna_type;
-    this->antenna_gain = antenna_gain;
+    this->antenna = antenna;
+    this->antennaGain = antennaGain;
     this->bearing = bearing;
 
     id = vehicleCount;
+    twr = maxThrust / mass;
 
     vehicleCount++;
     entityCount++;
 }
 
-CelestialBody::CelestialBody(PreciseVector3D position, cpp_dec_float_100 mass, QString name,
+void VehicleEntity::startThruster(msecs timeMSecs)
+{
+    auto tItr = thrusters.find(timeMSecs);
+    if(tItr != thrusters.end()){
+        thrust = bearingUnitScale * tItr->second.thrust;
+        _thrusterActivation = (thrust != 0);
+    }
+}
+
+void VehicleEntity::runThruster(const msecs deltaMSecs)
+{
+
+    if(_thrusterActivation == 0){
+        return;
+    }
+
+    // Updating thrust related properties.
+    if(fuel > 0){
+        cpp_dec_float_100 fuelUsedEstimated = fuelConsPerMSec * deltaMSecs;
+        cpp_dec_float_100 fuelUsedReal;
+        cpp_dec_float_100 futureMass;
+
+        if(fuelUsedEstimated > fuel){
+            fuelUsedReal = fuel;
+            futureMass = mass - fuelUsedReal;
+            fuel = 0;
+            acceleration = (thrust / ((mass + futureMass) / 2)) * (fuelUsedReal / fuelUsedEstimated);
+            mass = futureMass;
+        }
+        else{
+            fuelUsedReal = fuelUsedEstimated;
+            fuel -= fuelUsedReal;
+            futureMass = mass - fuelUsedReal;
+            acceleration = thrust / ((mass + futureMass) / 2);
+            mass = futureMass;
+        }
+    }
+    else{
+        acceleration = 0;
+    }
+}
+
+void VehicleEntity::setBearing(cpp_dec_float_100 inclation, cpp_dec_float_100 azimuth)
+{
+    bearing.y = inclation;
+    bearing.z = azimuth;
+    bearingUnitScale = bearing.csctuv();
+}
+
+void VehicleEntity::calculateTwr()
+{
+    twr = maxThrust / (acceleration.get_scalar() * mass);
+}
+
+CelestialBody::CelestialBody(PreciseVector3D position,
+                             cpp_dec_float_100 mass,
+                             const cpp_dec_float_100 &radius,
+                             QString name,
                              PreciseVector3D velocity)
 {
     this->position = position;
     this->mass = mass;
+    this->radius = radius;
     this->name = name;
     this->velocity = velocity;
 
