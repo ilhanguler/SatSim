@@ -35,6 +35,10 @@ qt_add_executable(SatSim
     sceneSchema.json
     simgui3d.h simgui3d.cpp
     simguimanager.h simguimanager.cpp
+    dockresources.h dockresources.cpp dockresources.ui
+    dockenviroment.h dockenviroment.cpp dockenviroment.ui
+    dockmissions.h dockmissions.cpp dockmissions.ui
+
 
 )
 
